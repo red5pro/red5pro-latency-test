@@ -1,17 +1,3 @@
-// http://jsperf.com/left-zero-pad/14
-function pad(num) {
-    if (num < 10) {
-      return "0" + num;
-    }
-    return "" + num;
-}
-function pad100(num) {
-    if (num < 100) {
-      return "0" + num;
-    }
-    return "" + num;
-}
-  
   // Display two real time clocks, the server's and the client's, and show the
   // difference between them in milliseconds.
   function updateHomeClock() {
@@ -97,4 +83,25 @@ function pad100(num) {
     ServerDate.amortizationRate = 50;
     console.log("Set clock amortization threshold/rate to " + ServerDate.amortizationThreshold + "/" + ServerDate.amortizationRate);
   }
-  
+
+function pad(num) {
+    if (num < 10) {
+        return "0" + num;
+    }
+    return "" + num;
+}
+function pad100(num) {
+    if (num < 100) {
+        return "0" + num;
+    }
+    return "" + num;
+}
+
+function clockDisplayServer() {
+    document.getElementById("server").innerHTML =
+    "<span class=\"hidephone\">" + ServerDate.toDateString() + "</span> " +
+    pad(ServerDate.getHours()) + ":" +
+    pad(ServerDate.getMinutes()) + ":" +
+    pad(ServerDate.getSeconds()) + "." +
+    pad100(ServerDate.getMilliseconds()); 
+}
