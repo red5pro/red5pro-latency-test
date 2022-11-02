@@ -70,11 +70,12 @@ function mergeOptions() {
   var defaults = window.ServerDate;
   if (defaults) {
     for (var attrname in defaults) {
-      if (config[attrname]) {
+      if (typeof config[attrname] !== "undefined") {
         config[attrname] = defaults[attrname];
       }
     }
   }
+  if (config.debug && console && console.log) { console.log("config: " + JSON.stringify(config)) }
 }
 
 // Everything is in the global function ServerDate.  Unlike Date, there is no
