@@ -39,12 +39,12 @@
                 // After a synchronization there may be a significant difference between our
                 // clock and the server's clock.  Rather than make the change abruptly, we
                 // change our clock by adjusting it once per second by the amortizationRate.
-                amortizationRate: 1000, // ms
+                amortizationRate: 10000, // ms
                 // The exception to the above is if the difference between the clock and
                 // server's clock is too great (threshold set below).  If that's the case then
                 // we skip amortization and set the clock to match the server's clock
                 // immediately.
-                amortizationThreshold: 10000, // ms
+                amortizationThreshold: 100000, // ms
                 // After the initial synchronization the two clocks may drift so we
                 // automatically synchronize again every synchronizationIntervalDelay.
                 synchronizationIntervalDelay: 60000 // ms
@@ -52,7 +52,7 @@
         </script>
         <script src="serverdate.js"></script>
         <script>
-            setInterval(clockDisplay, 25) // 40/s
+            setInterval(clockDisplay, 10) // 100/s
         </script>
     </body>
 </html>
