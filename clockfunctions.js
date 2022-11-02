@@ -25,5 +25,4 @@ function clockDisplay() {
     document.getElementById("offset").innerHTML = offset;
     document.getElementById("sdate").innerHTML = sdate;
     document.getElementById("precision").innerHTML = precision;
-    console.log(precision);
 }
