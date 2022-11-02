@@ -33,7 +33,7 @@
                 // After a synchronization there may be a significant difference between our
                 // clock and the server's clock.  Rather than make the change abruptly, we
                 // change our clock by adjusting it once per second by the amortizationRate.
-                amortizationRate: 10000, // ms
+                amortizationRate: 50, // ms
                 // The exception to the above is if the difference between the clock and
                 // server's clock is too great (threshold set below).  If that's the case then
                 // we skip amortization and set the clock to match the server's clock
