@@ -97,8 +97,7 @@ function ServerDate() {
   // See http://stackoverflow.com/a/18543216/1330099.
   return this
     ? ServerDate
-    //: ServerDate.toString();
-    : ServerDate.now();
+    : ServerDate.toString();
 }
 
 ServerDate.parse = Date.parse;
