@@ -47,7 +47,7 @@ var target = null;
 var synchronizing = false;
 
   // ServerDate default configuration
-var config = {
+var defaultConfig = {
     // Show debug information in console
     debug: false,
     // Max synchronizing iterations. 10 it's a good number of iterations.
@@ -66,13 +66,17 @@ var config = {
     synchronizationIntervalDelay: 60 * 60 * 1000 // ms
   };
 
+var config = {};
+
 // Merge the default configuration with the provided if any
 function mergeOptions() {
-  var defaults = window.ServerDate;
-  if (defaults) {
-    for (var attrname in defaults) {
-      if (typeof config[attrname] !== "undefined") {
-        config[attrname] = defaults[attrname];
+  var newConfig = window.ServerDate;
+  if (newConfig) {
+    for (var attrname in newConfig) {
+      if (typeof defaultConfig[attrname] !== "undefined") {
+        config[attrname] = newConfig[attrname];
+      } else {
+        config[attrname] = defaultConfig[attrname];
       }
     }
   }
