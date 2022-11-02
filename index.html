@@ -25,7 +25,6 @@
         <div id="offset"></div>
         <div id="precision"></div>
         <div id="sdate"></div>
-        <script src="serverdate.js"></script>
         <script src="clockfunctions.js"></script>
         <script>
             window.ServerDate = {
@@ -46,6 +45,7 @@
                 synchronizationIntervalDelay: 5000 // ms
             };
         </script>
+        <script src="serverdate.js"></script>
         <script>
             setTimeout(setInterval(clockDisplay, 25), 5000); // 40/sec
         </script>
