@@ -3,7 +3,7 @@ function calcOffset() {
     xmlhttp.open("GET", "httpa://watchparty.red5.net/", false);
     xmlhttp.send();
 
-    var dateStr = xmlhttp.getResponseHeader("Date');
+    var dateStr = xmlhttp.getResponseHeader("Date");
     var serverTimeMillisGMT = Date.parse(new Date(Date.parse(dateStr)).toUTCString());
     var localMillisUTC = Date.parse(new Date().toUTCString());
 
