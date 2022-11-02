@@ -75,7 +75,7 @@ function mergeOptions() {
       }
     }
   }
-  if (config.debug && console && console.log) { console.log("config: " + JSON.stringify(config)) }
+  if (config.debug && console && console.log) { console.log("config: " + JSON.stringify(config))}
 }
 
 // Everything is in the global function ServerDate.  Unlike Date, there is no
@@ -189,7 +189,7 @@ function setTarget(newTarget) {
   // amortization threshold) then skip amortization.
 
   delta = Math.abs(target - offset);
-
+  console.log("delta: " + delta);
   if (delta > ServerDate.amortizationThreshold) {
     log("Difference between target and offset too high (" + delta
       + " ms); skipping amortization.");
