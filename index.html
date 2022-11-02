@@ -19,12 +19,17 @@
         </style>
     </head>
     <body>
-        <div id="server">
-            <em class="red">This clock requires JavaScript.</em>
+        <div id="serverDate">Server:
+            <span id="server">
+                <em class="red">This clock requires JavaScript.</em>
+            </span>
         </div>
-        <div id="offset"></div>
-        <div id="precision"></div>
-        <div id="sdate"></div>
+        <div id="offsetInfo">Offset:
+            <span id="offset"></span>
+        </div>
+        <div id="precisionInfo">Precision:
+            <span id="precision"></span>
+        </div>
         <script src="clockfunctions.js"></script>
         <script>
             window.ServerDate = {
