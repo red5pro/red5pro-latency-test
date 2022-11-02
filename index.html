@@ -26,18 +26,23 @@
         <script src="serverdate.js"></script>
         <script src="clockfunctions.js"></script>
         <script>
-            // Disable amortization only for first sync
-            ServerDate.amortizationThreshold = 0;
-            setTimeout(resetAmortization, 1000*5);
-    
-            // Initialize display
-            updateClocks();
-            updateMetaData(true);
-            setTimeout(updateMetaData, 1000*2);
-    
-            // Set intervals for updating display
-            setInterval(updateClocks, 25); // 40/sec
-            setInterval(updateMetaData, 5000); // 5s
+            window.ServerDate = {
+                debug: false,
+                // Max synchronizing iterations. 10 it's a good number of iterations.
+                iterations: 10,
+                // After a synchronization there may be a significant difference between our
+                // clock and the server's clock.  Rather than make the change abruptly, we
+                // change our clock by adjusting it once per second by the amortizationRate.
+                amortizationRate: 25, // ms
+                // The exception to the above is if the difference between the clock and
+                // server's clock is too great (threshold set below).  If that's the case then
+                // we skip amortization and set the clock to match the server's clock
+                // immediately.
+                amortizationThreshold: 2000, // ms
+                // After the initial synchronization the two clocks may drift so we
+                // automatically synchronize again every synchronizationIntervalDelay.
+                synchronizationIntervalDelay: 60 * 60 * 1000 // ms
+            };
         </script>
     </body>
 </html>
