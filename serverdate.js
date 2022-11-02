@@ -29,24 +29,23 @@ var ServerDate = (function(serverNow) {
 // and after the script was loaded.  This gives us a good estimation of the
 // server's clock right away, which we later refine during synchronization.
 
-var
   // Remember when the script was loaded.
-  scriptLoadTime = Date.now(),
+var scriptLoadTime = Date.now();
 
   // Remember the URL of this script so we can call it again during
   // synchronization.
-  scripts = document.getElementsByTagName("script"),
-  URL = scripts[scripts.length - 1].src,
+var scripts = document.getElementsByTagName("script");
+var URL = scripts[scripts.length - 1].src;
 
-  synchronizationIntervalDelay,
-  synchronizationInterval,
-  precision,
-  offset,
-  target = null,
-  synchronizing = false,
+var synchronizationIntervalDelay;
+var synchronizationInterval;
+var precision;
+var offset;
+var target = null;
+var synchronizing = false;
 
   // ServerDate default configuration
-  config = {
+var config = {
     // Show debug information in console
     debug: false,
     // Max synchronizing iterations. 10 it's a good number of iterations.
