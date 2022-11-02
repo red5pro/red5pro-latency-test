@@ -46,7 +46,7 @@ var offset;
 var target = null;
 var synchronizing = false;
 
-  // ServerDate default configuration
+// ServerDate default configuration
 var defaultConfig = {
     // Show debug information in console
     debug: false,
@@ -97,7 +97,8 @@ function ServerDate() {
   // See http://stackoverflow.com/a/18543216/1330099.
   return this
     ? ServerDate
-    : ServerDate.toString();
+    //: ServerDate.toString();
+    ServerDate.now();
 }
 
 ServerDate.parse = Date.parse;
