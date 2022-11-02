@@ -47,7 +47,7 @@
         <script src="serverdate.js"></script>
         <script src="clockfunctions.js"></script>
         <script>
-            ServerDate.amortizationThreshold = 0;
+            ServerDate.amortizationThreshold = 10000;
             clockDisplay();
             ServerDate.amortizationThreshold = 25;
             setInterval(clockDisplay, 25); // 40/sec
