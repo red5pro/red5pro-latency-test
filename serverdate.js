@@ -98,7 +98,7 @@ function ServerDate() {
   return this
     ? ServerDate
     //: ServerDate.toString();
-    ServerDate.now();
+    : ServerDate.now();
 }
 
 ServerDate.parse = Date.parse;
