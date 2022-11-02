@@ -11,6 +11,12 @@ function pad100(num) {
     return "" + num;
 }
 
+function clockDisplayOffset() {
+    var client = new Date();
+    var offset = Math.abs(ServerDate - client);
+    document.getElementById("offset").innerHTML = offset;
+}
+
 function clockDisplayServer() {
     document.getElementById("server").innerHTML =
     "<span class=\"hidephone\">" + ServerDate.toDateString() + "</span> " +
@@ -18,4 +24,5 @@ function clockDisplayServer() {
     pad(ServerDate.getMinutes()) + ":" +
     pad(ServerDate.getSeconds()) + "." +
     pad100(ServerDate.getMilliseconds()); 
+    clockDisplayOffset();
 }
