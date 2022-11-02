@@ -47,7 +47,9 @@
         </script>
         <script src="serverdate.js"></script>
         <script>
-            setTimeout(setInterval(clockDisplay, 25), 5000); // 40/sec
+            setTimeout(function() {
+                setInterval(clockDisplay, 25) //40/s
+            }, 5000);
         </script>
     </body>
 </html>
