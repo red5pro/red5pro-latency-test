@@ -20,7 +20,7 @@ function clockDisplay() {
     pad100(ServerDate.getMilliseconds()); 
     var client = new Date();
     var offset = Math.abs(ServerDate - client);
-    var sdate = ServerDate + offset;
+    var sdate = ServerDate + offset + ServerDate.getPrecision();
     document.getElementById("offset").innerHTML = offset;
     document.getElementById("sdate").innerHTML = sdate;
 }
