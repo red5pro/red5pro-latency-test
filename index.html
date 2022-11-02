@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset=utf-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Michael Lee">
+        <title>Latency Test | Red5 Pro</title>
+        <link href="normalize.min.css" rel="stylesheet" type="text/css">
+        <style>
+            .green {
+                color: green;
+            }
+            .red {
+                color: red;
+            }
+            .yellow {
+                color: yellow;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="server">
+            <em class="red">This clock requires JavaScript.</em>
+        </div>
+        <div id="syncnote"></div>
+        <script src="serverdate.js"></script>
+        <script src="clockfunctions.js"></script>
+        <script>
+            // Disable amortization only for first sync
+            ServerDate.amortizationThreshold = 0;
+            setTimeout(resetAmortization, 1000*5);
+    
+            // Initialize display
+            updateClocks();
+            updateMetaData(true);
+            setTimeout(updateMetaData, 1000*2);
+    
+            // Set intervals for updating display
+            setInterval(updateClocks, 25); // 40/sec
+            setInterval(updateMetaData, 1000*60*5); // 12/hr
+        </script>
+    </body>
+</html>
