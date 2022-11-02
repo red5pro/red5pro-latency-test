@@ -83,6 +83,9 @@ function mergeOptions() {
   if (config.debug && console && console.log) { console.log("config: " + JSON.stringify(config))}
 }
 
+// merge the options here so they are available at the start of the script
+mergeOptions();
+
 // Everything is in the global function ServerDate.  Unlike Date, there is no
 // need for a constructor because there aren't instances.
 
@@ -323,9 +326,6 @@ setInterval(function()
 
 // Synchronize whenever the page is shown again after losing focus.
 window.addEventListener('pageshow', synchronize);
-
-// Merge options
-mergeOptions();
 
 // Start our first synchronization.
 synchronize();
