@@ -21,7 +21,7 @@ function clockDisplay() {
     var client = new Date();
     var offset = Math.abs(ServerDate - client);
     var precision = ServerDate.getPrecision();
-    var sdate = ServerDate + offset + precision; 
+    var sdate = ServerDate + offset; 
     document.getElementById("offset").innerHTML = offset;
     document.getElementById("sdate").innerHTML = sdate;
     document.getElementById("precision").innerHTML = precision;
