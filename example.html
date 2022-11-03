@@ -42,8 +42,8 @@
            const clientDate = new Date();
            const serverDate = new Date(clientDate.getTime() + offset);
    
-           document.getElementById("client").innerHTML = String(clientDate);
-           document.getElementById("server").innerHTML = String(serverDate);
+           document.getElementById("client").innerHTML = String(clientDate.toISOString);
+           document.getElementById("server").innerHTML = String(serverDate.toISOString);
    
            document.getElementById(
              "difference"
