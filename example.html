@@ -42,8 +42,8 @@
            const clientDate = new Date();
            const serverDate = new Date(clientDate.getTime() + offset);
    
-           var clientDateISO = clientDate.toISOString;
-           var serverDateISO = serverDate.toISOString;
+           var clientDateISO = clientDate.toISOString();
+           var serverDateISO = serverDate.toISOString();
 
            document.getElementById("client").innerHTML = String(clientDateISO);
            document.getElementById("server").innerHTML = String(serverDateISO);
