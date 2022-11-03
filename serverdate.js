@@ -132,6 +132,7 @@ ServerDate.getPrecision = function() // ms
 {
   if (typeof target.precision != "undefined")
     // Take into account the amortization.
+    console.log("target.precision: " + target.precision);
     return target.precision + Math.abs(target - offset);
 };
 
