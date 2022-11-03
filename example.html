@@ -37,8 +37,8 @@
    
          // Display two real time clocks, the server's and the client's, and show
          // the difference between them in milliseconds.
-         const updateClocks = () => {
-           const { offset, uncertainty } = lastSample;
+         function updateClocks() {
+           var { offset, uncertainty } = lastSample;
            var clientDate = new Date();
            var serverDate = new Date(clientDate.getTime() + offset);
    
