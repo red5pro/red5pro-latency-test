@@ -210,8 +210,9 @@ function setTarget(newTarget) {
 function synchronize() {
   var iteration = 1,
     requestTime, responseTime,
-    best,
-    totalSamples;
+    best;
+
+  var offsetTotal = 0;
 
   // Request a time sample from the server.
   function requestSample() {
@@ -257,15 +258,13 @@ function synchronize() {
       sample = new Offset(serverNow + precision - responseTime,
         precision);
 
-    totalSamples = totalSamples + sample
-    var averageSamples = totalSamples / iteration;
-
-    log("sample: " + iteration + ", offset: " + String(sample) + " totalSamples: " + totalSamples + " averageOffset: " + averageSamples);
+    offsetTotal += sample;
+    log("sample: " + iteration + ", offset: " + String(sample) + ", offsetTotal: " + offsetTotal);
 
     // Remember the best sample so far.
     if ((iteration == 1) || (precision <= best.precision))
       best = sample;
-    
+
     // Take 10 samples so we get a good chance of at least one sample with
     // low latency.
     if (iteration < config.iterations) {
@@ -274,11 +273,7 @@ function synchronize() {
     }
     else {
       // Set the offset target to the best sample collected.
-      // setTarget(best);
-      
-      // Set the offset to the average of the offsets
-      averageSamples = totalSamples / iteration;
-      setTarget(averageSamples);
+      setTarget(best);
 
       synchronizing = false;
     }
