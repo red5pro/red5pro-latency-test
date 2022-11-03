@@ -44,11 +44,11 @@
            var serverDate = new Date(clientDate.getTime() + offset);
 
            try {
-             clientDateISO = clientDate.toISOString();
-             serverDateISO = serverDate.toISOString();
+             var clientDateISO = clientDate.toISOString();
+             var serverDateISO = serverDate.toISOString();
            } catch (error) {
-             clientDateISO = "";
-             serverDateISO = "";
+             var clientDateISO = "";
+             var serverDateISO = "";
            }
 
            console.log("clientDate: " + clientDate.toISOString() + " serverDate: " + serverDate.toISOString());
