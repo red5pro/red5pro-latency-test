@@ -33,6 +33,7 @@
    
          const synchronize = async () => {
            lastSample = await getServerDate();
+           console.log("Synchronized lastSample: " + lastSample);           
          };
    
          // Display two real time clocks, the server's and the client's, and show
