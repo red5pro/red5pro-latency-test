@@ -264,7 +264,7 @@ function synchronize() {
     offsetTotal += sample;
     var offsetAverage = offsetTotal / iteration;
     
-    log("sample: " + iteration + ", offset: " + String(sample) + ", offsetAverage: " + offsetAverage + ", offsetTotal: " + offsetTotal);
+    log("sample: " + iteration + ", offset: " + String(sample) + ", offsetAverage: " + offsetAverage + ", best: " + best);
 
     // Remember the best sample so far.
     if ((iteration == 1) || (precision <= best.precision))
