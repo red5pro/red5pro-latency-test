@@ -132,7 +132,6 @@ ServerDate.getPrecision = function() // ms
 {
   if (typeof target.precision != "undefined")
     // Take into account the amortization.
-    console.log("target.precision: " + target.precision);
     return target.precision + Math.abs(target - offset);
 };
 
@@ -263,9 +262,9 @@ function synchronize() {
         precision);
 
     offsetTotal += sample;
-    var offsetAverage = offsetTotal / iteration;
+    var offsetAverage = new Offset(offsetTotal / iteration, precision);
     
-    log("sample: " + iteration + ", offset: " + String(sample) + ", offsetAverage: " + offsetAverage + ", best: " + best);
+    log("sample: " + iteration + ", offset: " + String(sample) + ", offsetAverage: " + String(offsetAverage) + ", best: " + String(best));
 
     // Remember the best sample so far.
     if ((iteration == 1) || (precision <= best.precision))
