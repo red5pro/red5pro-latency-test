@@ -200,7 +200,6 @@ function setTarget(newTarget) {
   // amortization threshold) then skip amortization.
 
   delta = Math.abs(target - offset);
-  console.log("delta: " + delta + " sd.amortizationThreshold: " + ServerDate.amortizationThreshold);
   if (delta > ServerDate.amortizationThreshold) {
     log("Difference between target and offset too high (" + delta
       + " ms); skipping amortization.");
