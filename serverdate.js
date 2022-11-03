@@ -39,8 +39,8 @@ var scriptLoadTime = Date.now();
 var scripts = document.getElementsByTagName("script");
 var URL = scripts[scripts.length - 1].src;
 
-// use Google for more accuracy
-var URL = "https://google.com";
+// use Google for more accuracy (CORS ISSUE)
+// var URL = "https://google.com";
 
 var synchronizationIntervalDelay;
 var synchronizationInterval;
@@ -278,10 +278,10 @@ function synchronize() {
     }
     else {
       // Set the offset target to the best sample collected.
-      setTarget(best);
+      //setTarget(best);
 
       // set the offset target based on the offset average.
-      //setTarget(offsetAverage);
+      setTarget(offsetAverage);
 
       synchronizing = false;
     }
