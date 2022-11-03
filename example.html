@@ -43,7 +43,7 @@
            var clientDate = new Date();
            var serverDate = new Date(clientDate.getTime() + offset);
 
-           console.log("clientDate: " + clientDate.toISOString() + " serverDate: " + String(serverDate));
+           console.log("clientDate: " + clientDate.toISOString() + " serverDate: " + serverDate.toISOString());
 
            document.getElementById("client").innerHTML = String(clientDate);
            document.getElementById("server").innerHTML = String(serverDate);
