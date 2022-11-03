@@ -275,10 +275,10 @@ function synchronize() {
     }
     else {
       // Set the offset target to the best sample collected.
-      //setTarget(best);
+      setTarget(best);
 
       // set the offset target based on the offset average.
-      setTarget(offsetAverage);
+      //setTarget(offsetAverage);
 
       synchronizing = false;
     }
