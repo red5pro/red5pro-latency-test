@@ -40,7 +40,7 @@ var scripts = document.getElementsByTagName("script");
 var URL = scripts[scripts.length - 1].src;
 
 // use Google for more accuracy
-var URL = "http://google.com";
+var URL = "https://google.com";
 
 var synchronizationIntervalDelay;
 var synchronizationInterval;
