@@ -41,7 +41,8 @@
          function updateClocks() {
            var { offset, uncertainty } = lastSample;
            var clientDate = new Date();
-           var serverDate = new Date(clientDate.getTime() + offset);
+           // var serverDate = new Date(clientDate.getTime() + offset);
+           var serverDate = new Date(clientDate.getTime() + offset - uncertainty);
 
            try {
              var clientDateISO = clientDate.toISOString();
