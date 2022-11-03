@@ -1,61 +1,72 @@
-<!DOCTYPE HTML>
-<html lang="en">
-    <head>
-        <meta charset=utf-8>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="author" content="Michael Lee">
-        <title>Latency Test | Red5 Pro</title>
-        <link href="normalize.min.css" rel="stylesheet" type="text/css">
-        <style>
-            .green {
-                color: green;
-            }
-            .red {
-                color: red;
-            }
-            .yellow {
-                color: yellow;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="serverDate">Server:
-            <span id="server">
-                <em class="red">This clock requires JavaScript.</em>
-            </span>
-        </div>
-        <div id="offsetInfo">Offset:
-            <span id="offset"></span>
-        </div>
-        <div id="precisionInfo">Precision:
-            <span id="precision"></span>
-        </div>
-        <script src="clockfunctions.js"></script>
-        <script>
-            window.ServerDate = {
-                debug: true,
-                // Max synchronizing iterations. 10 it's a good number of iterations.
-                // PROBLEM: THE SOURCE CLOCK REQUESTS ARE DIFFERING TOO MUCH
-                // PROBLEM: BETWEEN REQUESTS.  ODDLY CURBY.NET DOESN'T DRIFT MUCH
-                // PROBLEM: FIGURE THIS OUT!
-                iterations: 10,
-                // After a synchronization there may be a significant difference between our
-                // clock and the server's clock.  Rather than make the change abruptly, we
-                // change our clock by adjusting it once per second by the amortizationRate.
-                amortizationRate: 10000, // ms
-                // The exception to the above is if the difference between the clock and
-                // server's clock is too great (threshold set below).  If that's the case then
-                // we skip amortization and set the clock to match the server's clock
-                // immediately.
-                amortizationThreshold: 100000, // ms
-                // After the initial synchronization the two clocks may drift so we
-                // automatically synchronize again every synchronizationIntervalDelay.
-                synchronizationIntervalDelay: 60000 // ms
-            };
-        </script>
-        <script src="serverdate.js"></script>
-        <script>
-            setInterval(clockDisplay, 10) // 100/s
-        </script>
-    </body>
-</html>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
+
+   <!DOCTYPE html>
+   <html lang="en">
+     <head>
+       <title>Latency Test | Red5 Pro</title>
+     </head>
+   
+     <body>
+       <h1>Red5 Pro Latency Test</h1>
+   
+       <table border="1">
+         <tr>
+           <td>client</td>
+           <td id="client"></td>
+         </tr>
+         <tr>
+           <td>server</td>
+           <td id="server"></td>
+         </tr>
+         <tr>
+           <td>difference</td>
+           <td id="difference" style="text-align: right"></td>
+         </tr>
+       </table>
+   
+       <script type="module">
+         import { getServerDate } from "./serverDate.js.php";
+   
+         let lastSample = {};
+   
+         const synchronize = async () => {
+           lastSample = await getServerDate();
+           console.log("Synchronized lastSample: " + JSON.stringify(lastSample));           
+         };
+   
+         // Display two real time clocks, the server's and the client's, and show
+         // the difference between them in milliseconds.
+         function updateClocks() {
+           var { offset, uncertainty } = lastSample;
+           var clientDate = new Date();
+           var serverDate = new Date(clientDate.getTime() + offset);
+
+           try {
+             var clientDateISO = clientDate.toISOString();
+             var serverDateISO = serverDate.toISOString();
+             // console.log("clientDate: " + clientDate.toISOString() + " serverDate: " + serverDate.toISOString());
+           } catch (error) {
+             var clientDateISO = "";
+             var serverDateISO = "";
+           }
+
+           document.getElementById("client").innerHTML = clientDateISO;
+           document.getElementById("server").innerHTML = serverDateISO;
+   
+           document.getElementById(
+             "difference"
+           ).innerHTML = `${offset} &plusmn; ${uncertainty} ms`;
+         };
+   
+         synchronize();
+         setInterval(synchronize, 10 * 60 * 1000);
+   
+         // Display the clocks and update them every second.
+         updateClocks();
+         setInterval(updateClocks, 10);
+       </script>
+     </body>
+   </html>
+   
