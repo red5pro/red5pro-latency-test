@@ -257,12 +257,14 @@ function synchronize() {
       sample = new Offset(serverNow + precision - responseTime,
         precision);
 
-    log("sample: " + iteration + ", offset: " + String(sample));
+    totalSamples = totalSamples + sample
+    var averageSamples = totalSamples / iteration;
+
+    log("sample: " + iteration + ", offset: " + String(sample) + " totalSamples: " + totalSamples + " averageOffset: " + averageSamples);
 
     // Remember the best sample so far.
     if ((iteration == 1) || (precision <= best.precision))
       best = sample;
-    totalSamples = totalSamples + sample
     
     // Take 10 samples so we get a good chance of at least one sample with
     // low latency.
@@ -275,7 +277,8 @@ function synchronize() {
       // setTarget(best);
       
       // Set the offset to the average of the offsets
-      setTarget(totalSamples/config.iterations);
+      averageSamples = totalSamples / iteration;
+      setTarget(averageSamples);
 
       synchronizing = false;
     }
